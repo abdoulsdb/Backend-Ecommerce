@@ -20,6 +20,7 @@ exports.getProduct = (req , res, next)=>
                    return {
                     _id: doc._id,
                     name : doc.name,
+                    feeTp : doc.feeTp,
                     description : doc.description,
                     price : doc.price,
                     createdat : doc.createdat,
@@ -56,6 +57,7 @@ exports.createProduct = (req, res, next) => {
       const prod = new products({
         _id: mongoose.Types.ObjectId(),
         name : req.body.name,
+        feeTp : req.body.feeTp,
         description : req.body.description,
         price : req.body.price,
         createdat : req.body.createdat,
@@ -73,6 +75,7 @@ exports.createProduct = (req, res, next) => {
         createdProduct: {
           _id: result._id,
           name : result.name,
+          feeTp : result.feeTp,
           description : result.description,
           price : result.price,
           createdat : result.createdat,
@@ -129,6 +132,7 @@ exports.modifyProduct = (req, res, next)=>
    const updateRecord = {
     id: mongoose.Types.ObjectId(),
     name : req.body.name,
+    feeTp : req.body.feeTp,
     description : req.body.description,
     price : req.body.price,
     createdat : req.body.createdat,
@@ -148,6 +152,7 @@ exports.modifyProduct = (req, res, next)=>
           UpdateProduct : {
             _id: docs._id,
             name : docs.name,
+            feeTp : docs.feeTp,
             description : docs.description,
             price : docs.price,
             createdat : docs.createdat,
