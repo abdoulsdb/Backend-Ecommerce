@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const routerProducts = require('./routes/products');
 const routerCategory = require('./routes/category');
 const routerUser = require('./routes/users');
-mongoose.connect('mongodb+srv://sabdy:sabdy123456@ecommerceapi.up8ah.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
+mongoose.connect('mongodb+srv://<nameUser>:<password>@ecommerceapi.up8ah.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
 {useNewUrlParser :true ,useUnifiedTopology :true}).then(() =>{
     console.log('Connexion success !!')
 }).catch((error) =>{
