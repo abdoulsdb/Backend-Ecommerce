@@ -3,73 +3,23 @@ const mongoose = require('mongoose');
 const orderSchema = mongoose.Schema(
   {
     _id: mongoose.Schema.Types.ObjectId,
-    user: {
-      type: mongoose.Schema.Types.ObjectId,
-       required: true,
-      ref: 'Users',
-    },
-    orderItems: [
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'Users', required: true },
+    products: [
       {
-        name: { type: String, required: true },
-        qty: { type: Number, default: 1 },
-        image: { type: String, required: true },
-        price: { type: Number, required: true },
-        status: { type: String, default: 'Draf' },
-        createdat: {   type : Date,default : Date.now},
         product: {
           type: mongoose.Schema.Types.ObjectId,
-          required: true,
-          ref: 'Products',
+          ref: 'Products' ,
+          required : true
         },
-      },
+        quantity: {
+          type: Number,
+          default: 1,
+        }
+      }
     ],
-    shippingAddress: {
-      address: { type: String, required: true },
-      city: { type: String, required: true },
-      postalCode: { type: String, required: true },
-      country: { type: String, required: true },
-    },
-    paymentMethod: {
-      type: String,
-      required: true,
-    },
-    paymentResult: {
-      id: { type: String },
-      status: { type: String },
-      update_time: { type: String },
-      email_address: { type: String },
-    },
-    taxPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-    shippingPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-    totalPrice: {
-      type: Number,
-      required: true,
-      default: 0.0,
-    },
-    isPaid: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    paidAt: {
-      type: Date,
-    },
-    isDelivered: {
-      type: Boolean,
-      required: true,
-      default: false,
-    },
-    deliveredAt: {
-      type: Date,
-    }
+    amount: { type: Number, required: true },
+    address: { type: Object, required: true },
+    status: { type: String, default: "pending" },
   },
   {
     timestamps: true,

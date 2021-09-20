@@ -21,7 +21,8 @@ const users = mongoose.Schema({
     pseudo:
     {
        type : String,
-     required : true
+       required : true,
+      unique : true
     },
      description:
      {
@@ -50,6 +51,10 @@ const users = mongoose.Schema({
         type : Date,
         default : Date.now
      },
+      isAdmin: {
+      type: Boolean,
+      default: false,
+    },
   }, 
  {
   timestamps: true,

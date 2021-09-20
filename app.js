@@ -6,14 +6,16 @@ const bodyParser = require('body-parser');
 const routerProducts = require('./routes/products');
 const routerCategory = require('./routes/category');
 const routerUser = require('./routes/users');
-mongoose.connect('mongodb+srv://<nameUser>:<password>@ecommerceapi.up8ah.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
+const routerOrder = require('./routes/orders');
+
+mongoose.connect('mongodb+srv://sabdy:sabdy123456@ecommerceapi.up8ah.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', 
 {useNewUrlParser :true ,useUnifiedTopology :true}).then(() =>{
     console.log('Connexion success !!')
 }).catch((error) =>{
     console.log(error);
 });
-app.use(express.static(__dirname + '/public'));
-app.use('/public/images', express.static('images'));
+//app.use(express.static(__dirname + '/public'));
+app.use('/uploads', express.static('uploads'));
 app.use(bodyParser.json());
 //app.use(filter());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -33,6 +35,7 @@ app.use((req, res, next) => {
 app.use('/api/products', routerProducts);
 app.use('/api/category', routerCategory);
 app.use('/api/users', routerUser);
+app.use('/api/orders', routerOrder);
 
 app.use((req, res, next) => {
     const error = new Error("Not found");

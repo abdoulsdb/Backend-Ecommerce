@@ -5,11 +5,11 @@ const mongoose = require("mongoose");
 const ObjetId = require('mongoose').Types.ObjectId;
 
   
-exports.getUser = (req , res, next)=>
+exports.getUsers = (req , res, next)=>
 {
    
     users.find()
-        .select("firstName lastName sexe pseudo description email zipCode phone birthdat")
+        .select("firstName lastName sexe pseudo description email zipCode phone birthdat isAdmin")
         .exec()
         .then(docs  =>{
            const response = {
@@ -25,7 +25,8 @@ exports.getUser = (req , res, next)=>
                     email : doc.email,
                     zipCode : doc.zipCode,
                     phone : doc.phone,
-                    birthdat : doc.birthdat
+                    birthdat : doc.birthdat,
+                    isAdmin : doc.isAdmin
                    };
                })
            }; 
@@ -39,6 +40,7 @@ exports.getUser = (req , res, next)=>
           });
 };
 exports.createUser=(req, res, next) => {
+  
   const user = new users({
     _id: mongoose.Types.ObjectId(),
     firstName : req.body.firstName,
@@ -49,7 +51,8 @@ exports.createUser=(req, res, next) => {
     email : req.body.email,
     zipCode : req.body.zipCode,
     phone : req.body.phone,
-    birthdat : req.body.birthdat
+    birthdat : req.body.birthdat,
+    isAdmin :  req.body.isAdmin
   });
   user
     .save()
@@ -68,6 +71,7 @@ exports.createUser=(req, res, next) => {
             zipCode : result.zipCode,
             phone : result.phone,
             birthdat : result.birthdat,
+            isAdmin : result.isAdmin,
             request: {
                 type: 'GET',
                 url: "http://localhost:3000/users/" + result._id
@@ -103,6 +107,7 @@ exports.oneUser = (req, res, next) => {
             zipCode : doc.zipCode,
             phone : doc.phone,
             birthdat : doc.birthdat,
+            isAdmin : doc.isAdmin,
               request: {
                   type: 'GET',
                   url: 'http://localhost:3000/users'
@@ -136,7 +141,8 @@ exports.modifyUser = (req, res, next)=>
     email : req.body.email,
     zipCode : req.body.zipCode,
     phone : req.body.phone,
-    birthdat : req.body.birthdat
+    birthdat : req.body.birthdat,
+    isAdmin : req.body.isAdmin,
   };
   users.findByIdAndUpdate(
     req.params.userId,
@@ -157,6 +163,7 @@ exports.modifyUser = (req, res, next)=>
             zipCode : docs.zipCode,
             phone : docs.phone,
             birthdat : docs.birthdat,
+            isAdmin : doc.isAdmin,
             request: {
                 type: 'GET',
                 url: 'http://localhost:3000/users/' + id

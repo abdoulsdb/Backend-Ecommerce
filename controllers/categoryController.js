@@ -44,8 +44,9 @@ exports.createCategory=(req, res, next) => {
       res.status(201).json({
         message: "Created category successfully",
         createdCategory: {
-            name: result.name,
             _id: result._id,
+            name: result.name,
+            categoryImage: result.categoryImage,
             request: {
                 type: 'GET',
                 url: "http://localhost:3000/category/" + result._id

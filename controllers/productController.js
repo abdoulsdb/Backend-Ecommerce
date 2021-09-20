@@ -6,7 +6,7 @@ const mongoose = require("mongoose");
 const ObjetId = require('mongoose').Types.ObjectId;
 
   
-exports.getProduct = (req , res, next)=>
+exports.getProducts = (req , res, next)=>
 {
    
     products.find()

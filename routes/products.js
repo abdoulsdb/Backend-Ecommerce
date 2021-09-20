@@ -4,7 +4,7 @@ const productController = require('../controllers/productController')
 const multer = require('multer');
 const upload = multer ({dest :'public/images'});
 
-router.get('/',productController.getProduct);
+router.get('/',productController.getProducts);
 router.post('/', upload.single('productImage'),productController.createProduct);
 router.put("/:productId",upload.single('productImage'),productController.modifyProduct);
 router.get("/:productId",productController.oneProduct);
